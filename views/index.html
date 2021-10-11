@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>YourParty</title>
+</head>
+
+<body id="body" class="">
+    <%- include('header.html') %>
+
+
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/javascript/scriptTop.js"></script>
+
+        <div class="control">
+            <div class="buttons">
+                <input id="linkYt" type="text" placeholder="https://www.youtube.com/watch?v=WRXBDmyNxxo" maxlength="200">
+                <button onclick="changeLink()" type="submit">SET</button>
+            </div>
+            <div class="buttons">
+                <button class="button" onclick="Preplay()" id="play-button">PLAY</button>
+                <button class="button" onclick="Prepause();" id="pause-button">PAUSE</button>
+                <button class="button" onclick="Prestop()" id="stop-button">STOP</button>
+                <button onclick="posAtual()">Enviar Posição Atual</button>
+            </div>
+        </div>
+
+        <!-- Make sure ?enablejsapi=1 is in URL -->
+        <div class="video-control">
+            <iframe id="video" src="https://www.youtube.com/embed/T8QHfzdYow8?enablejsapi=1&html5=1" allow="accelerometer; autoplay; clipboard-write" frameborder="0" allowfullscreen></iframe>
+            <div class="chat-global">
+                <div class="chat">
+                    <div class="chat-top">
+                        <h1>Chat sala: </h1>
+                        <div class="users-global">
+                            <i id="ocultar" class="fa fa-users" aria-hidden="true"></i>
+                            <ul id="users" class="users">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <ul id="mensagens" class="mensagens">
+                    </ul>
+                </div>
+                <form id="form" id="chat-bottom" class="chat-bottom">
+                    <input id="input" type="text" placeholder="Digite sua mensagem" maxlength="200" minlength="1">
+                    <button onclick="getMsg()" type="button">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="/javascript/scriptBottom.js"></script>
+</body>
+
+</html>

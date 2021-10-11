@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+    <title>YourParty-Enter</title>
+</head>
+
+<body id="body" class="">
+    <%- include('header.html') %>
+        <form class="buttons" id="enter" action="/" METHOD="GET">
+            <input name="room" type="text" placeholder="Place your room name" minlength="1">
+            <button type="submit">Entrar</button>
+        </form>
+        <script>
+            var dark = document.getElementById("dark");
+            dark.addEventListener("click", () => {
+                var body = document.getElementById('body');
+                body.classList.toggle("black");
+            })
+        </script>
+</body>
+
+</html>
