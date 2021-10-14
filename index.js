@@ -5,8 +5,12 @@ const bodyParser = require('body-parser');
 const io = require('socket.io')(http);
 const path = require('path');
 const express = require('express');
+const SocketAntiSpam = require('socket-anti-spam');
 
+var nome;
+var roomA;
 var users = [];
+var banidos = [];
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -35,9 +39,40 @@ app.get('/enter', (req, res) => {
 });
 
 
+
+
+const socketAntiSpam = new SocketAntiSpam({
+    banTime: 0.1, // Ban time in minutes
+    kickThreshold: 10, // User gets kicked after this many spam score
+    kickTimesBeforeBan: 2, // User gets banned after this many kicks
+    banning: true, // Uses temp IP banning after kickTimesBeforeBan
+    io: io, // Bind the socket.io variable
+})
+
+// Call functions with created reference 'socketAntiSpam'
+socketAntiSpam.event.on('ban', dat => {
+    let data = {
+        msg: nome + ' foi banido!',
+        nome: 'Bot',
+        room: roomA
+    };
+    banidos.push(nome);
+    io.to(data.room).emit('news message', data);
+    io.to(socket.id).emit('Banido', true);
+})
+
+socketAntiSpam.event.on('kick', (socket, dat) => {
+    let data = {
+        msg: nome + ' levou um kick!',
+        nome: 'Bot',
+        room: roomA
+    };
+    io.to(socket.id).emit('kickado', true);
+    io.to(data.room).emit('news message', data);
+})
+
 io.on('connection', (socket) => {
-    var nome;
-    var roomA;
+
 
     socket.emit('insertUser', "");
 
@@ -64,17 +99,16 @@ io.on('connection', (socket) => {
     });
 
     socket.on('new message', (data) => {
-        if (data.msg.length <= 200) {
-            io.to(data.room).emit('news message', data);
-        } else {
-            data.msg = "Mensangem bloqueada";
+        data.msg = data.msg.trim();
+        if (data.msg.length <= 200 && data.msg.length != 0) {
             io.to(data.room).emit('news message', data);
         }
     });
     socket.on('new user', (data) => {
         var nomeS = data.nome;
+        nome = data.nome;
         var parar = false;
-        if (nomeS != "" && nomeS != null) {
+        if (nomeS != "" && nomeS != null && banidos.indexOf(nome) == -1) {
             for (let c = 0; c < users.length; c++) {
                 if (users[c].nome == nomeS) {
                     parar = true;
@@ -92,6 +126,7 @@ io.on('connection', (socket) => {
                 }
                 io.to(data.room).emit('allUsers', result);
             } else {
+
                 socket.emit('insertUser', "");
             }
         } else {
@@ -113,7 +148,7 @@ io.on('connection', (socket) => {
     });
 })
 
-http.listen(process.env.PORT, () => {
+http.listen(process.env.PORT || 3000, () => {
 
     console.log('Rodando na porta *:3000');
 

@@ -71,7 +71,14 @@ socket.on('allUsers', (data) => {
     }
 });
 
-
+socket.on('kickado', () => {
+    alert("Você foi kickado");
+    window.location.href = '/enter';
+})
+socket.on('Banido', () => {
+    alert("Você foi Banido");
+    window.location.href = '/enter';
+})
 socket.on('insertUser', () => {
     nome = prompt("Qual seu nome?");
     socket.emit('new user', {
@@ -116,5 +123,5 @@ socket.on('news message', (data) => {
     var item = document.createElement('li');
     item.textContent = data.nome + ' disse: ' + data.msg;
     mensagens.appendChild(item);
-    mensagens.scrollTo(0, document.body.scrollHeight);
+    $('.mensagens').scrollTop($('.mensagens')[0].scrollHeight);
 })

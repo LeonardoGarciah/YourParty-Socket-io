@@ -190,6 +190,8 @@ input:checked+.slider:before {
     height: 290px;
     background-color: white;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 .mensagens li {
