@@ -42,14 +42,14 @@ app.get('/enter', (req, res) => {
 
 
 const socketAntiSpam = new SocketAntiSpam({
-    banTime: 0.1, // Ban time in minutes
-    kickThreshold: 10, // User gets kicked after this many spam score
-    kickTimesBeforeBan: 2, // User gets banned after this many kicks
-    banning: true, // Uses temp IP banning after kickTimesBeforeBan
-    io: io, // Bind the socket.io variable
+    banTime: 0.1,
+    kickThreshold: 10,
+    kickTimesBeforeBan: 2,
+    banning: true,
+    io: io,
 })
 
-// Call functions with created reference 'socketAntiSpam'
+
 socketAntiSpam.event.on('ban', dat => {
     let data = {
         msg: nome + ' foi banido!',
