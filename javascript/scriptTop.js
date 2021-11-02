@@ -1,22 +1,27 @@
 var socket = io();
 var room = window.location.href.split('=')[1];
+// Entrar na sala
 socket.emit('entrar', room);
 
+// Pausar video para todos
 function Prepause() {
     player.pauseVideo();
     socket.emit('pause', room);
 };
 
+// Dar play para todos
 function Preplay() {
     player.playVideo();
     socket.emit('play', room);
 };
 
+// Resetar video para todos
 function Prestop() {
     player.stopVideo();
     socket.emit('stop', room);
 };
 
+// Controle de video
 socket.on('pauseA', () => {
     player.pauseVideo();
 })
@@ -30,6 +35,7 @@ socket.on('syncA', (data) => {
     player.seekTo(data);
 })
 
+// Mudar video
 socket.on('changeA', (data) => {
     video.src = data;
 })
@@ -51,6 +57,7 @@ function changeLink() {
     }
 }
 
+// Enviar posição atual para todos
 function posAtual() {
     socket.emit('sync', {
         tempo: player.getCurrentTime(),

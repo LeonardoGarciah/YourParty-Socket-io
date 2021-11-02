@@ -56,7 +56,7 @@ body {
     padding: 10px;
     border-radius: 4px;
     outline: none;
-    border: solid 2px gray;
+    border: solid 2px #ccc;
     width: 400px;
 }
 
@@ -66,6 +66,7 @@ body {
     width: 727px;
     height: 409px;
     min-width: 500px;
+    border-radius: 10px;
 }
 
 
@@ -140,8 +141,14 @@ input:checked+.slider:before {
 }
 
 .black {
-    background-color: #0D1418 !important;
+    background-color: #121314 !important;
     color: white !important;
+    box-shadow: none !important;
+}
+
+.blackInput {
+    background-color: rgb(29, 29, 29) !important;
+    color: white;
 }
 
 #logo {
@@ -162,7 +169,7 @@ input:checked+.slider:before {
 }
 
 .chat-global {
-    border: solid 2px gray;
+    border: solid 2px #ccc;
 }
 
 .chat {
@@ -263,4 +270,10 @@ input:checked+.slider:before {
     width: 150px !important;
     height: 100px !important;
     opacity: 1;
+}
+
+@media screen and (max-width: 1135px) {
+    .chat-global {
+        margin-top: 50px;
+    }
 }

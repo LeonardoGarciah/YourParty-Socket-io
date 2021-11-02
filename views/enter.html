@@ -15,11 +15,21 @@
             <input name="room" type="text" placeholder="Place your room name" minlength="1">
             <button type="submit">Entrar</button>
         </form>
+        <!-- form button -->
         <script>
+            var alternate = 0;
             var dark = document.getElementById("dark");
             dark.addEventListener("click", () => {
                 var body = document.getElementById('body');
                 body.classList.toggle("black");
+                var logo = document.getElementById("logo");
+                if (alternate == 1) {
+                    logo.src = "../public/img/party2.png";
+                    alternate = 0;
+                } else if (alternate == 0) {
+                    alternate = 1;
+                    logo.src = "../public/img/party_.png";
+                }
             })
         </script>
 </body>
