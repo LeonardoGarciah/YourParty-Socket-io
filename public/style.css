@@ -277,3 +277,22 @@ input:checked+.slider:before {
         margin-top: 50px;
     }
 }
+
+.copy {
+    position: absolute;
+    right: -230px;
+    bottom: 10px;
+    transition: all 1s;
+}
+
+.copy:hover {
+    right: 0px !important;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 5px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+}
