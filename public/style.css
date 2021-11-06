@@ -30,6 +30,10 @@ body {
     transition: all 0.5s;
 }
 
+.content {
+    margin-bottom: 50px;
+}
+
 .control {
     width: 100%;
     display: flex;
@@ -279,6 +283,24 @@ input:checked+.slider:before {
 @media screen and (max-width: 1135px) {
     .chat-global {
         margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 491px) {
+    .buttons input[type=text] {
+        width: 300px;
+    }
+    #posatual {
+        margin-top: 15px;
+    }
+    .buttons {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .buttons input[type=text] {
+        width: 260px;
     }
 }
 
