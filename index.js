@@ -112,7 +112,7 @@ io.on('connection', (socket) => {
 
     // Trocar video  
     socket.on('change', (data) => {
-        socket.broadcast.emit('changeA', data);
+        socket.to(data.room).emit('changeA', data);
     });
 
     // Enviar nova mensagem
