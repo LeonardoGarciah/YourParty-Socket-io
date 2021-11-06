@@ -54,6 +54,7 @@ body {
     color: white;
     font-weight: bold;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .buttons input[type=text] {
@@ -238,6 +239,7 @@ input:checked+.slider:before {
     color: white;
     font-weight: bold;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .users-global {
@@ -249,6 +251,7 @@ input:checked+.slider:before {
 .users-global i {
     font-size: 20px;
     color: white;
+    cursor: pointer;
 }
 
 .users-global h1 {
